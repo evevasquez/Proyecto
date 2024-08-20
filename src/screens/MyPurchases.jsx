@@ -1,13 +1,29 @@
-import React from 'react'
-import { View } from 'react-native'
-import { Text } from 'react-native-paper'
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
+import TopBar from '../components/TopBar';
 
-const MyPurchases = () => {
+const MyPurchases = ({active, setActive}) => {
   return (
-    <View>
-      <Text>Mis compras</Text>
+    <View style={styles.container}>
+      <TopBar active={active} setActive={setActive} />
+      <View style={styles.content}>
+        <Text>Mis compras</Text>
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default MyPurchases
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 40,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default MyPurchases;
