@@ -6,13 +6,10 @@ import {
   Text,
   IconButton,
   Divider,
-  Button,
 } from 'react-native-paper';
-import {BackHandler, View} from 'react-native';
+import {BackHandler, View, Image} from 'react-native';
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconIonicons from 'react-native-vector-icons/Ionicons';
-import TopBar from '../components/TopBar';
 import Home from '../screens/Home';
 import Login from '../screens/Login';
 import UserRegistration from '../screens/UserRegistration';
@@ -41,9 +38,8 @@ function CustomDrawerContent(props) {
       if (active !== 'first') {
         setActive('first');
         props.navigation.navigate('Inicio');
-        return true; // Esto previene que la app se cierre
+        return true;
       }
-      // Si la pantalla activa es 'Inicio', permite que el comportamiento por defecto del botón de retroceso se ejecute
       return false;
     };
 
@@ -52,8 +48,8 @@ function CustomDrawerContent(props) {
       backAction,
     );
 
-    return () => backHandler.remove(); // Limpia el listener al desmontar el componente
-  }, [active]); // Se ejecuta cada vez que 'active' cambia
+    return () => backHandler.remove();
+  }, [active]);
 
   return (
     <ScrollView
@@ -74,11 +70,10 @@ function CustomDrawerContent(props) {
         }}>
         <IconButton
           size={100}
-          icon={({color, size}) => (
-            <IconMaterialIcons
-              name="account-circle"
-              color={color}
-              size={size}
+          icon={() => (
+            <Image
+              source={require('../../src/constants/database/images/foto_perfil.jpg')}
+              style={{width: 100, height: 100, borderRadius: 50}}
             />
           )}
           onPress={() => {
@@ -108,171 +103,146 @@ function CustomDrawerContent(props) {
           bottom: 17,
         }}
       />
-      <ScrollView>
-        <View style={{flex: 0.5}}>
-          <SafeAreaView style={{height: '50%'}}>
-            <DrawerPaper.Section>
-              <DrawerPaper.Item
-                icon="home"
-                label="Inicio"
-                active={active === 'first'}
-                onPress={() => {
-                  setActive('first');
-                  props.navigation.navigate('Inicio');
-                }}
-              />
-              <DrawerPaper.Item
-                icon="login"
-                label="Iniciar sesión"
-                active={active === 'second'}
-                onPress={() => {
-                  props.navigation.navigate('Iniciar sesión');
-                  setActive('second');
-                }}
-              />
-              <DrawerPaper.Item
-                icon="account"
-                label="Crear una cuenta"
-                active={active === 'third'}
-                onPress={() => {
-                  props.navigation.navigate('Crear una cuenta');
-                  setActive('third');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialIcons name="payment" color={color} size={size} />
-                )}
-                label="Procesar pago"
-                active={active === 'fourth'}
-                onPress={() => {
-                  props.navigation.navigate('Procesar pago');
-                  setActive('fourth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialIcons
-                    name="shopping-cart"
-                    color={color}
-                    size={size}
-                  />
-                )}
-                label="Tu carrito"
-                active={active === 'fifth'}
-                onPress={() => {
-                  props.navigation.navigate('Tu carrito');
-                  setActive('fifth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialCommunityIcons
-                    name="shopping"
-                    color={color}
-                    size={size}
-                  />
-                )}
-                label="Productos"
-                active={active === 'sixth'}
-                onPress={() => {
-                  props.navigation.navigate('Productos');
-                  setActive('sixth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialIcons name="search" color={color} size={size} />
-                )}
-                label="Buscar productos"
-                active={active === 'seventh'}
-                onPress={() => {
-                  props.navigation.navigate('Buscar productos');
-                  setActive('seventh');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconIonicons name="information" color={color} size={size} />
-                )}
-                label="Detalles del producto"
-                active={active === 'eighth'}
-                onPress={() => {
-                  props.navigation.navigate('Detalles del producto');
-                  setActive('eighth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialIcons name="list" color={color} size={size} />
-                )}
-                label="Categorías"
-                active={active === 'ninth'}
-                onPress={() => {
-                  props.navigation.navigate('Categorias');
-                  setActive('ninth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialIcons
-                    name="shopping-bag"
-                    color={color}
-                    size={size}
-                  />
-                )}
-                label="Mis compras"
-                active={active === 'tenth'}
-                onPress={() => {
-                  props.navigation.navigate('Mis compras');
-                  setActive('tenth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon="heart"
-                label="Mis productos favoritos"
-                active={active === 'eleventh'}
-                onPress={() => {
-                  props.navigation.navigate('Mis favoritos');
-                  setActive('eleventh');
-                }}
-              />
-              <DrawerPaper.Item
-                icon="sale"
-                label="Ofertas"
-                active={active === 'twelfth'}
-                onPress={() => {
-                  props.navigation.navigate('Ofertas');
-                  setActive('twelfth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon="account"
-                label="Perfil de usuario"
-                active={active === 'thirteenth'}
-                onPress={() => {
-                  props.navigation.navigate('Perfil de usuario');
-                  setActive('thirteenth');
-                }}
-              />
-              <DrawerPaper.Item
-                icon={({color, size}) => (
-                  <IconMaterialIcons
-                    name="contact-support"
-                    color={color}
-                    size={size}
-                  />
-                )}
-                label="Ayuda y soporte"
-                active={active === 'fourteenth'}
-                onPress={() => {
-                  props.navigation.navigate('Ayuda y soporte');
-                  setActive('fourteenth');
-                }}
-              />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{flex: 1}}>
+          <SafeAreaView style={{height: '40%'}}>
+            <DrawerPaper.Section showDivider={false}>
+                <DrawerPaper.Item
+                  icon="home"
+                  label="Inicio"
+                  active={active === 'first'}
+                  onPress={() => {
+                    setActive('first');
+                    props.navigation.navigate('Inicio');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon={({color, size}) => (
+                    <IconMaterialCommunityIcons
+                      name="shopping"
+                      color={color}
+                      size={size}
+                    />
+                  )}
+                  label="Productos"
+                  active={active === 'sixth'}
+                  onPress={() => {
+                    props.navigation.navigate('Productos');
+                    setActive('sixth');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon={({color, size}) => (
+                    <IconMaterialIcons name="search" color={color} size={size} />
+                  )}
+                  label="Buscar productos"
+                  active={active === 'seventh'}
+                  onPress={() => {
+                    props.navigation.navigate('Buscar productos');
+                    setActive('seventh');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon={({color, size}) => (
+                    <IconMaterialIcons name="list" color={color} size={size} />
+                  )}
+                  label="Categorías"
+                  active={active === 'ninth'}
+                  onPress={() => {
+                    props.navigation.navigate('Categorias');
+                    setActive('ninth');
+                  }}
+                />
+                <Divider
+                  style={{
+                    backgroundColor: '#663399',
+                    width: '70%',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    height: 1.2,
+                    top: 17,
+                  }}
+                />
             </DrawerPaper.Section>
-          </SafeAreaView>
-        </View>
+            </SafeAreaView>
+          </View>
+            <DrawerPaper.Section showDivider={false}>
+              <View style={{top: 32}}>
+                <DrawerPaper.Item
+                  icon={({color, size}) => (
+                    <IconMaterialIcons
+                      name="shopping-bag"
+                      color={color}
+                      size={size}
+                    />
+                  )}
+                  label="Mis compras"
+                  active={active === 'tenth'}
+                  onPress={() => {
+                    props.navigation.navigate('Mis compras');
+                    setActive('tenth');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon="heart"
+                  label="Mis productos favoritos"
+                  active={active === 'eleventh'}
+                  onPress={() => {
+                    props.navigation.navigate('Mis favoritos');
+                    setActive('eleventh');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon={({color, size}) => (
+                    <IconMaterialIcons
+                      name="shopping-cart"
+                      color={color}
+                      size={size}
+                    />
+                  )}
+                  label="Tu carrito"
+                  active={active === 'fifth'}
+                  onPress={() => {
+                    props.navigation.navigate('Tu carrito');
+                    setActive('fifth');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon="sale"
+                  label="Ofertas"
+                  active={active === 'twelfth'}
+                  onPress={() => {
+                    props.navigation.navigate('Ofertas');
+                    setActive('twelfth');
+                  }}
+                />
+                <DrawerPaper.Item
+                  icon={({color, size}) => (
+                    <IconMaterialIcons
+                      name="contact-support"
+                      color={color}
+                      size={size}
+                    />
+                  )}
+                  label="Ayuda y soporte"
+                  active={active === 'fourteenth'}
+                  onPress={() => {
+                    props.navigation.navigate('Ayuda y soporte');
+                    setActive('fourteenth');
+                  }}
+                />
+                <Divider
+                  style={{
+                    backgroundColor: '#663399',
+                    width: '95%',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    height: 1.2,
+                    top: 17,
+                  }}
+                />
+              </View>
+            </DrawerPaper.Section>
       </ScrollView>
     </ScrollView>
   );
