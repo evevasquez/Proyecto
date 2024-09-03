@@ -15,7 +15,7 @@ const TopBar = ({active, setActive}) => {
     setActive(activeScreen);
     navigation.navigate(view);
   };
-
+  
   return (
     <View style={styles.topBar}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 1,
+    paddingHorizontal: 10,
   },
   icon: {
     marginHorizontal: 10,
