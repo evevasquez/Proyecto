@@ -8,4 +8,15 @@ export const COLOURS = {
   backgroundMedium: '#B9B9B9',
   backgroundDark: '#777777',
   purple: '#af62ec',
+  primary: '#45484A',
+  secondary: '#AEB5BB',
+  gray: '#D9D9D9',
+};
+
+export const FONTS = {
+  Bold: 'Poppins-Bold',
+  Light: 'Poppins-Light',
+  Medium: 'Poppins-Medium',
+  Regular: 'Poppins-Regular',
+  SemiBold: 'Poppins-SemiBold',
 };
